@@ -17,6 +17,7 @@ Global Academia is a comprehensive platform designed to revolutionize how educat
 
 ### Frontend
 
+- Nest.js
 - React.js
 - TypeScript
 - Tailwind CSS
