@@ -1,4 +1,5 @@
-/* eslint-disable react-hooks/purity */
+/* eslint-disable react-hooks/set-state-in-effect */
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -38,7 +39,20 @@ const Welcome = () => {
     visa: 0,
   });
 
+  const [particlePositions, setParticlePositions] = useState<
+    Array<{ left: number; top: number; delay: number; duration: number }>
+  >([]);
+
   useEffect(() => {
+    // Generate random positions only on the client
+    const positions = [...Array(20)].map((_, i) => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: i * 0.5,
+      duration: Math.random() * 10 + 10,
+    }));
+    setParticlePositions(positions);
+
     // Animate counting
     const animateCount = (
       target: number,
@@ -121,15 +135,15 @@ const Welcome = () => {
 
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {particlePositions.map((pos, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-linear-to-r from-blue-500/20 to-cyan-500/20 rounded-full animate-float"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${Math.random() * 10 + 10}s`,
+              left: `${pos.left}%`,
+              top: `${pos.top}%`,
+              animationDelay: `${pos.delay}s`,
+              animationDuration: `${pos.duration}s`,
             }}
           />
         ))}
