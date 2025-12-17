@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 bg-black z-50 h-[70px] shadow-lg">
+      <header className="fixed top-0 left-0 right-0 bg-black z-50 h-17.5 shadow-lg">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-center h-full">
             {/* Logo - Optimized with priority image */}
@@ -198,7 +198,7 @@ const Navbar = () => {
       )}
 
       {/* Spacer - Fixed height for better CLS */}
-      <div className="h-[70px]" />
+      <div className="h-17.5" />
     </>
   );
 };
